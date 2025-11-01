@@ -2,12 +2,5 @@ services:
   - type: web
     name: volunteer-app
     env: python
-    plan: free
-    region: singapore  # 或其他區域都可以
-    buildCommand: >
-      cd volunteer &&
-      pip install -r requirements.txt &&
-      python manage.py collectstatic --noinput
-    startCommand: >
-      cd volunteer &&
-      gunicorn volunteer.wsgi:application
+    buildCommand: pip install -r requirements.txt && cd volunteer && python manage.py collectstatic --noinput
+    startCommand: cd volunteer && gunicorn volunteer.wsgi:application
