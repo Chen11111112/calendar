@@ -1,13 +1,8 @@
 services:
   - type: web
-    name: django-demo
+    name: volunteer-app
     env: python
-    buildCommand: "./manage.py collectstatic --noinput"
-    startCommand: "gunicorn your_project.wsgi:application"
-    envVars:
-      - key: DEBUG
-        value: False
-      - key: SECRET_KEY
-        generateValue: true
-      - key: ALLOWED_HOSTS
-        value: ".onrender.com"
+    buildCommand: cd volunteer && pip install -r requirements.txt && python manage.py collectstatic --no-input
+    startCommand: cd volunteer && gunicorn volunteer.wsgi:application
+
+
