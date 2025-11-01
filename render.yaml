@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: volunteer-app
+    env: python
+    buildCommand: cd volunteer && pip install -r requirements.txt && python manage.py collectstatic --no-input
+    startCommand: cd volunteer && gunicorn volunteer.wsgi:application
